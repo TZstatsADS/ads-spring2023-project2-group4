@@ -1,0 +1,14 @@
+```{r}
+df = read.csv('./data/Queens_Library_Branches.csv')
+df
+```
+
+
+```{r}
+# Remove rows with missing lat/lon values
+df <- df[which(!is.na(df$Latitude) & !is.na(df$Longitude)),]
+```
+
+```{r}
+write.csv(df, "cleaned_data.csv", row.names = FALSE)
+```

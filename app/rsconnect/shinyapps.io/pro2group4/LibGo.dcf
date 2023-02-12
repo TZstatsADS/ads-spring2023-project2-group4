@@ -1,0 +1,14 @@
+name: LibGo
+title: LibGo
+username:
+account: pro2group4
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8287866
+bundleId: 6836345
+url: https://pro2group4.shinyapps.io/LibGo/
+when: 1676156325.68963
+lastSyncTime: 1676156325.68965
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: cleaned_data.csv|current-test.nb.html|current-test.Rmd|data/.DS_Store|data/citibike_data.csv|Queens_Library_Branches.csv

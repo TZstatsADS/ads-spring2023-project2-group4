@@ -22,53 +22,78 @@ if (!require("leaflet.extras")) {
 
 # Define UI for application that draws a histogram
 shinyUI(
-    navbarPage(strong("Citi Bike Study",style="color: white;"), 
-               theme=shinytheme("cerulean"), # select your themes https://rstudio.github.io/shinythemes/
+    navbarPage(strong("LibGo",style="color: white;"), 
+               theme=shinytheme("superhero"), # select your themes https://rstudio.github.io/shinythemes/
+               
+               tabPanel("Introduction",
+                        tags$img(
+                          src = "https://live.staticflickr.com/5151/5914733818_983804b390_b.jpg",
+                          width = "100%",
+                          style = "opacity: 0.90"
+                        ),
+                        fluidRow(
+                          absolutePanel(
+                            style = "background-color: rgba(0, 0, 0, .3)",
+                            top = "40%",
+                            left = "25%",
+                            right = "25%",
+                            height = 270,
+                            tags$p(
+                              style = "padding: 5%; background-color: rgba(0, 0, 0, .3);font-family: alegreya; font-size: 120%",
+                              "LibGo"
+                            )
+                          )
+                        )
+               ), # tabPanel closing 
 #------------------------------- tab panel - Maps ---------------------------------
                 tabPanel("Maps",
-                         icon = icon("map-marker-alt"), #choose the icon for
-                         div(class = 'outer',
-                        # side by side plots
-                        fluidRow(
-                                splitLayout(cellWidths = c("50%", "50%"), 
-                                             leafletOutput("left_map",width="100%",height=1200),
-                                             leafletOutput("right_map",width="100%",height=1200))),
-                        #control panel on the left
-                        absolutePanel(id = "control", class = "panel panel-default", fixed = TRUE, draggable = TRUE,
-                                      top = 200, left = 50, right = "auto", bottom = "auto", width = 250, height = "auto",
-                                      tags$h4('Citi Bike Activity Comparison'), 
-                                      tags$br(),
-                                      tags$h5('Pre-covid(Left) Right(Right)'), 
-                                      prettyRadioButtons(
-                                                      inputId = "adjust_score",
-                                                      label = "Score List:", 
-                                                      choices = c("start_cnt", 
-                                                                  "end_cnt", 
-                                                                  "day_diff_absolute",
-                                                                  "day_diff_percentage"),
-                                                      inline = TRUE, 
-                                                      status = "danger",
-                                                      fill = TRUE
-                                                        ),
-                                      awesomeRadio("adjust_time", 
-                                                   label="Time",
-                                                    choices =c("Overall",
-                                                               "Weekday", 
-                                                               "Weekend"), 
-                                                    selected = "Overall",
-                                                    status = "warning"),
-                                      # selectInput('adjust_weather',
-                                      #             label = 'Adjust for Weather',
-                                      #             choices = c('Yes','No'), 
-                                      #             selected = 'Yes'
-                                      #             ),
-                                      style = "opacity: 0.80"
-                                      
-                                ), #Panel Control - Closing
-                            ) #Maps - Div closing
-                        ) #tabPanel maps closing
-   
+                         leafletOutput("map", width="100%", height="100%"),
+                        ), #tabPanel maps closing
+
+                  tabPanel("Search by category",
+                           sidebarPanel(
+                             selectInput(inputId = "Day", 
+                                          label = "Choose by day:", 
+                                         choices = c("Monday", "Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")),
+                             selectInput(inputId = "Borough",
+                                           label = "Choose by borough:",
+                                           choices = c("Manhattan", "Bronx", "Brooklyn", "Queens", "Staten Island")),
+                               
+                            selectInput(inputId = "Accessibility",
+                                           label = "Choose by accessibility:",
+                                           choices = c("fully access", "partially access"))
+                               
+                             )
+                           
+                  ), # tabPanel closing 
+
+tabPanel("Search", icon = icon("table"), 
+         tags$style(HTML("
+                    .dataTables_filter input {
+                            color: white;
+                            background-color: white;
+                           }
+
+                    thead {
+                    color: white;
+                    }
+
+                     tbody {
+                    color: white;
+                    }
+
+                   "
+         )),
+         
+         DT::dataTableOutput("search_result")), 
+
+#https://shiny.rstudio.com/articles/datatables.html
 
 
+      tabPanel("Reference",
+                     
+                  ) # tabPanel closing 
+
+  
     ) #navbarPage closing  
 ) #Shiny UI closing    
