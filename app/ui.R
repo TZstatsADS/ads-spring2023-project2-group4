@@ -23,7 +23,7 @@ if (!require("leaflet.extras")) {
 # Define UI for application that draws a histogram
 shinyUI(
     navbarPage(strong("LibGo",style="color: white;"), 
-               theme=shinytheme("superhero"), # select your themes https://rstudio.github.io/shinythemes/
+               theme=shinytheme("cosmo"), # select your themes https://rstudio.github.io/shinythemes/
                
                tabPanel("Introduction",
                         tags$img(
@@ -70,16 +70,16 @@ shinyUI(
 tabPanel("Search", icon = icon("table"), 
          tags$style(HTML("
                     .dataTables_filter input {
-                            color: white;
-                            background-color: white;
+                            color: black;
+                            background-color: black;
                            }
 
                     thead {
-                    color: white;
+                    color: black;
                     }
 
                      tbody {
-                    color: white;
+                    color: black;
                     }
 
                    "
