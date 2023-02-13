@@ -39,8 +39,12 @@ shinyUI(
                             right = "25%",
                             height = 270,
                             tags$p(
-                              style = "padding: 5%; background-color: rgba(0, 0, 0, .3);font-family: alegreya; font-size: 120%",
+                              style = "padding: 5%; background-color: rgba(0, 0, 0, .3);font-family: alegreya; font-size: 220%; color: White; text-align: center",
                               "LibGo"
+                            ),
+                            tags$p(
+                              style = "color: White", 
+                              "a brief introduction"
                             )
                           )
                         )
